@@ -29,3 +29,33 @@ Modellizzare la struttura di un database, per memorizzare tutti i dati riguardan
 3. Utilizzare https://www.drawio.com/ per la creazione dello schema.
 
 4. Esportare il diagramma in formato .png caricarlo nel repository.
+
+## Svolgimento
+
+### Entities
+
+- Departement
+
+- Degree course
+
+- Course
+
+- Teacher
+
+- Exam
+
+- Student
+
+### Relationships
+
+- [2] Department     1:N Degree courses
+ 
+- [3] Degree course  1:N Courses
+ 
+- [4] Course         N:N Teachers
+ 
+- [5] Course         1:N Exam
+
+- [6] Degree course  1:N Student
+
+- [7] Student        N:N Exam
