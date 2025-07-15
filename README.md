@@ -214,11 +214,19 @@ Risolvere le query basandosi sul database ottenuto dal file `schema.sql`.
 
 ## Traccia del giorno 3
 
-Risolvere le seguenti query basandosi sul database ottenuto dal file `schema.sql`:
+Risolvere le query basandosi sul database ottenuto dal file `schema.sql`.
+
+## Svolgimento
 
 ### Group by
 
 1. Contare quanti iscritti ci sono stati ogni anno.
+
+    ```sql
+    SELECT YEAR(`enrolment_date`) AS year, COUNT(YEAR(`enrolment_date`)) AS `enrollments_number`
+    FROM `students`
+    GROUP BY `year`;
+    ```
 
 2. Contare gli insegnanti che hanno l'ufficio nello stesso edificio.
 
