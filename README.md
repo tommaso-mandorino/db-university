@@ -265,6 +265,13 @@ Risolvere le query basandosi sul database ottenuto dal file `schema.sql`.
 
 2. Selezionare tutti i Corsi di Laurea Magistrale del Dipartimento di Neuroscienze.
 
+    ```sql
+    SELECT `degrees`.*, `departments`.name AS 'department_name'
+    FROM `degrees`
+    JOIN `departments` ON `degrees`.`department_id` = `departments`.`id`
+    WHERE `degrees`.`level` = 'magistrale' AND `departments`.`name` = 'Dipartimento di Neuroscienze';
+    ```
+
 3. Selezionare tutti i corsi in cui insegna Fulvio Amato. (id=44)
 
 4. Selezionare tutti gli studenti con i dati relativi al corso di laurea a cui sono iscritti e il relativo dipartimento, in ordine alfabetico per cognome e nome.
