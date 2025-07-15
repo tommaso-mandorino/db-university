@@ -246,6 +246,12 @@ Risolvere le query basandosi sul database ottenuto dal file `schema.sql`.
 
 4. Contare quanti corsi di laurea ci sono per ogni dipartimento.
 
+    ```sql
+    SELECT `department_id`, COUNT(*) as `degree_courses_number`
+    FROM `degrees`
+    GROUP BY `department_id`;
+    ```
+
 ### Join
 
 1. Selezionare tutti gli studenti iscritti al Corso di Laurea in Economia.
