@@ -283,6 +283,34 @@ Risolvere le query basandosi sul database ottenuto dal file `schema.sql`.
 
 4. Selezionare tutti gli studenti con i dati relativi al corso di laurea a cui sono iscritti e il relativo dipartimento, in ordine alfabetico per cognome e nome.
 
+    ```sql
+    SELECT
+        -- Student data
+        `students`.`id` AS `student_id`,
+        `students`.`degree_id` AS `student_degree_id`,
+        `students`.`surname` AS `student_surname`,
+        `students`.`name` AS `student_name`,
+        `students`.`date_of_birth` AS `student_date_of_birth`,
+        `students`.`fiscal_code` AS `student_fiscal_code`,
+        `students`.`enrolment_date` AS `student_enrollment_date`,
+        `students`.`registration_number` AS `student_registration_number`,
+        `students`.`email` AS `student_email`,
+        -- Degree course data
+        `degrees`.`id` AS `degree_id`,
+        `degrees`.`department_id`,
+        `degrees`.`name` AS `degree_name`,
+        `degrees`.`level` AS `degree_level`,
+        `degrees`.`address` AS `degree_address`,
+        `degrees`.`email` AS `degree_email`,
+        `degrees`.`website` AS `degree_website`,
+        -- Department data
+        `departments`.`name` AS `department`
+    FROM `students`
+    JOIN `degrees` ON `students`.`degree_id` = `degrees`.`id`
+    JOIN `departments` ON `degrees`.`department_id` = `departments`.`id`
+    ORDER BY `students`.`surname`, `students`.`name`;
+    ```
+
 5. Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti.
 
 6. Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica. (5)
