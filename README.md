@@ -360,3 +360,17 @@ Risolvere le query basandosi sul database ottenuto dal file `schema.sql`.
     ```
 
 7. **(BONUS):** Selezionare per ogni studente il numero di tentativi sostenuti per ogni esame, stampando anche il voto massimo. Successivamente, filtrare i tentativi con voto minimo 18.
+
+    ```sql
+    SELECT
+        `exam_student`.`student_id`,
+        `exams`.`course_id`,
+        COUNT(*) AS `exam_attempts`,
+        MAX(`exam_student`.`vote`) AS `max_vote`
+    FROM `exam_student`
+    JOIN `students` ON `exam_student`.`student_id` = `students`.`id`
+    JOIN `exams` ON `exam_student`.`exam_id` = `exams`.`id`
+    JOIN `courses` ON `exams`.`course_id` = `courses`.`id`
+    GROUP BY `exam_student`.`student_id`, `exams`.`course_id`
+    HAVING `max_vote` >= 18;
+    ```
