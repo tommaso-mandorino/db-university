@@ -292,7 +292,7 @@ Risolvere le query basandosi sul database ottenuto dal file `schema.sql`.
         `students`.`name` AS `student_name`,
         `students`.`date_of_birth` AS `student_date_of_birth`,
         `students`.`fiscal_code` AS `student_fiscal_code`,
-        `students`.`enrolment_date` AS `student_enrollment_date`,
+        `students`.`enrolment_date` AS `student_enrolment_date`,
         `students`.`registration_number` AS `student_registration_number`,
         `students`.`email` AS `student_email`,
         -- Degree course data
@@ -312,6 +312,40 @@ Risolvere le query basandosi sul database ottenuto dal file `schema.sql`.
     ```
 
 5. Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti.
+
+    ```sql
+    SELECT
+        -- Degree course data
+        `degrees`.`id` AS `degree_id`,
+        `degrees`.`department_id`,
+        `degrees`.`name` AS `degree_name`,
+        `degrees`.`level` AS `degree_level`,
+        `degrees`.`address` AS `degree_address`,
+        `degrees`.`email` AS `degree_email`,
+        `degrees`.`website` AS `degree_website`,
+        -- Courses data
+        `courses`.`id` AS `course_id`,
+        `courses`.`degree_id`,
+        `courses`.`name` AS `course_name`,
+        `courses`.`description` AS `course_description`,
+        `courses`.`period` AS `course_period`,
+        `courses`.`year` AS `course_year`,
+        `courses`.`cfu` AS `course_cfu`,
+        `courses`.`website` AS `course_website`,
+        -- Teachers data
+        `teachers`.`id` AS `teacher_id`,
+        `teachers`.`name`AS `teacher_name`,
+        `teachers`.`surname` AS `teacher_surname`,
+        `teachers`.`phone` AS `teacher_phone`,
+        `teachers`.`email` AS `teacher_email`,
+        `teachers`.`office_address` AS `teacher_office_address`,
+        `teachers`.`office_number` AS `teacher_office_number`
+    FROM `degrees`
+    JOIN `courses` ON `degrees`.`id` = `courses`.`degree_id`
+    JOIN `course_teacher` ON `courses`.`id` = `course_teacher`.`course_id`
+    JOIN `teachers` ON `course_teacher`.`teacher_id` = `teachers`.`id`
+    ORDER BY `degrees`.`id`, `courses`.`id`;
+    ```
 
 6. Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica. (5)
 
