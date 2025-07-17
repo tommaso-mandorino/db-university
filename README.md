@@ -349,4 +349,14 @@ Risolvere le query basandosi sul database ottenuto dal file `schema.sql`.
 
 6. Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica. (5)
 
+    ```sql
+    SELECT DISTINCT `teachers`.*, `degrees`.`department_id`
+    FROM `teachers`
+    JOIN `course_teacher` ON `teachers`.`id` = `course_teacher`.`teacher_id`
+    JOIN `courses` ON `course_teacher`.`course_id` = `courses`.`id`
+    JOIN `degrees` ON `courses`.`degree_id` = `degrees`.`id`
+    WHERE `degrees`.`department_id` = 5;
+
+    ```
+
 7. **(BONUS):** Selezionare per ogni studente il numero di tentativi sostenuti per ogni esame, stampando anche il voto massimo. Successivamente, filtrare i tentativi con voto minimo 18.
